@@ -20,8 +20,19 @@
     .map{aspect-ratio:16/9;background:#f7f7f7;border:1px dashed #ccc;border-radius:12px;display:flex;align-items:center;justify-content:center}
     .chips{display:flex;gap:.5rem;flex-wrap:wrap}
     .chip{border:1px solid #ccc;border-radius:999px;padding:.15rem .6rem;font-size:.85rem}
-    /* upotetun lomakkeen kehys */
-    .form-frame{width:100%;min-height:900px;border:0;border-radius:12px}
+
+    /* Lomake-tyylit */
+    .form-row{display:grid;gap:.5rem;margin:.6rem 0}
+    .form-row.half{grid-template-columns:1fr}
+    @media(min-width:640px){.form-row.half{grid-template-columns:1fr 1fr}}
+    label{font-weight:600}
+    input,select,textarea{width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:10px}
+    .inline{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+    .btn{display:inline-block;padding:.7rem 1rem;border-radius:10px;border:1px solid #222;text-decoration:none;cursor:pointer}
+    .btn.secondary{border-color:#888}
+    .help{font-size:.9rem}
+    .ok{color:#166534}
+    .err{color:#b00020}
   </style>
 </head>
 <body>
@@ -43,19 +54,63 @@
       <p class="muted">Fyll ut skjemaet eller ta direkte kontakt – vi svarer raskt.</p>
 
       <div class="grid cols-2">
-        <!-- JOTFORM-UPOTUS -->
+        <!-- FORMSPREE-LOMAKE -->
         <section class="card" aria-labelledby="form-heading">
           <h2 id="form-heading">Send forespørsel</h2>
-          <iframe
-            class="form-frame"
-            title="Kontakt – Niemi Isolering"
-            src="https://form.jotform.com/252923075898067"
-            allow="clipboard-write; fullscreen"
-            loading="lazy">
-          </iframe>
-          <p class="muted" style="margin-top:.5rem">
-            Hvis skjemaet ikke vises, <a href="https://form.jotform.com/252923075898067" target="_blank" rel="noopener">åpne det i ny fane</a>.
-          </p>
+
+          <form id="contactForm" action="https://formspree.io/f/mvgwyebg" method="POST" novalidate>
+            <div class="form-row half">
+              <div>
+                <label for="name">Navn</label>
+                <input id="name" name="Navn" type="text" autocomplete="name" required />
+              </div>
+              <div>
+                <label for="company">Firma (valgfritt)</label>
+                <input id="company" name="Firma" type="text" autocomplete="organization" />
+              </div>
+            </div>
+
+            <div class="form-row half">
+              <div>
+                <label for="email">E-post</label>
+                <input id="email" name="E-post" type="email" autocomplete="email" required />
+              </div>
+              <div>
+                <label for="phone">Telefon / WhatsApp</label>
+                <input id="phone" name="Telefon" type="tel" autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label for="topic">Emne</label>
+              <select id="topic" name="Emne" required>
+                <option value="">Velg emne…</option>
+                <option>Tilbud / materialpris</option>
+                <option>Spesialmål etter tegning</option>
+                <option>Standardprodukter</option>
+                <option>Levering & dokumentasjon</option>
+                <option>Annet</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="message">Melding</label>
+              <textarea id="message" name="Melding" rows="6" placeholder="Beskriv delene (mål, materiale) eller legg ved lenke til tegninger." required></textarea>
+              <p class="help muted">Vedlegg: send tegninger på e-post – vi kobler dem til forespørselen.</p>
+            </div>
+
+            <!-- Formspree-lisäkenttiä -->
+            <input type="hidden" name="_subject" value="Henvendelse via nettside (NO)">
+            <!-- honeypot roskapostille -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <div class="inline">
+              <button class="btn" type="submit">Send</button>
+              <button class="btn secondary" type="reset">Tøm skjema</button>
+            </div>
+
+            <p id="form-status" class="help" role="status" aria-live="polite"></p>
+          </form>
         </section>
 
         <!-- Suorat yhteystiedot -->
@@ -92,5 +147,52 @@
       <p>© Niemi Isolering. Alle rettigheter forbeholdes.</p>
     </div>
   </footer>
+
+  <script>
+    // Lähetä Formspreeen ilman sivulta poistumista + palaute käyttäjälle
+    (function(){
+      const form = document.getElementById('contactForm');
+      const status = document.getElementById('form-status');
+
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        status.textContent = '';
+        status.className = 'help';
+
+        // kevyt validointi
+        const requiredOk =
+          form.name.value.trim() !== '' &&
+          form.email.value.trim() !== '' &&
+          form.topic.value.trim() !== '' &&
+          form.message.value.trim() !== '';
+        if(!requiredOk){
+          status.textContent = 'Fyll inn alle obligatoriske felter (Navn, E-post, Emne, Melding).';
+          status.classList.add('err');
+          return;
+        }
+
+        try{
+          const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form)
+          });
+
+          if(res.ok){
+            status.textContent = 'Takk! Forespørselen er sendt. Vi svarer så snart som mulig.';
+            status.classList.add('ok');
+            form.reset();
+          }else{
+            const data = await res.json().catch(()=>({}));
+            status.textContent = (data && data.error) ? data.error : 'Noe gikk galt ved sending. Prøv igjen senere.';
+            status.classList.add('err');
+          }
+        }catch(err){
+          status.textContent = 'Klarte ikke å sende (nettverksfeil). Prøv igjen senere.';
+          status.classList.add('err');
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
