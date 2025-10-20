@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Niemi Isolering – Prisliste</title>
+  <meta name="description" content="Prisliste for standardkanaler og komponenter. Spesialmål etter avtale. Rask levering og tydelig dokumentasjon." />
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .container{max-width:1100px;margin:0 auto;padding:1rem}
+    .muted{opacity:.85}
+    .table{width:100%;border-collapse:collapse}
+    .table th,.table td{border-bottom:1px solid #eee;padding:.6rem;text-align:left;vertical-align:top}
+    .note{background:#f7f7f7;border-radius:12px;padding:1rem;margin:1rem 0}
+    .badge{display:inline-block;border:1px solid #ccc;border-radius:999px;padding:.1rem .6rem;font-size:.85rem}
+    header,footer{border-bottom:1px solid #eee}
+    footer{border-bottom:none;border-top:1px solid #eee;margin-top:2rem}
+    .logo{text-decoration:none;font-weight:700}
+    .grid{display:grid;gap:1rem}
+    @media(min-width:800px){.grid.cols-2{grid-template-columns:1fr 1fr}}
+    .btn{display:inline-block;padding:.7rem 1rem;border-radius:10px;border:1px solid #222;text-decoration:none}
+    .btn.secondary{border-color:#888}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html" aria-label="Niemi Isolering">Niemi Isolering</a>
+      <nav class="nav">
+        <a href="index.html">Forside</a>
+        <a href="product/produkter.html">Produkter</a>
+        <a href="hinnasto.html" aria-current="page">Prisliste</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>Prisliste</h1>
+      <p class="muted">
+        Standardkanaler og komponenter priser nedenfor. <span class="badge">Spesialmål</span> og prosjekter prises <strong>etter tegning</strong>.
+        Alle leveranser kommer med tydelig <strong>PDF-dokumentasjon</strong> for enkel planlegging og montasje.
+      </p>
+
+      <!-- CTA katalog / tarjous -->
+      <p>
+        <a class="btn" href="pdf-viewer.html">Åpne katalog (PDF)</a>
+        <a class="btn secondary" href="kontakt.html">Be om tilbud</a>
+      </p>
+
+      <!-- Taulukko: esimerkkirakenne – korvaa hinnat -->
+      <h2>Standardprodukter</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Produkt</th>
+            <th>Dimensjon</th>
+            <th>Materiale</th>
+            <th>Enhet</th>
+            <th>Pris (NOK)</th>
+            <th>Merknad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kanal, rund</td>
+            <td>Ø100–Ø400</td>
+            <td>Galvanisert stål</td>
+            <td>lm</td>
+            <td><em>På forespørsel</em></td>
+            <td>Lagerføres</td>
+          </tr>
+          <tr>
+            <td>Kanal, rektangulær</td>
+            <td>100×100 – 1000×500</td>
+            <td>Galvanisert stål</td>
+            <td>m²/sett</td>
+            <td><em>På forespørsel</em></td>
+            <td>Spesialmål mulig</td>
+          </tr>
+          <tr>
+            <td>Tilkoblingsdeler</td>
+            <td>Muffer, nipler, skjøter</td>
+            <td>Galvanisert stål</td>
+            <td>stk</td>
+            <td><em>På forespørsel</em></td>
+            <td>Standarddimensjoner</td>
+          </tr>
+          <tr>
+            <td>Albue 90°</td>
+            <td>Ø125–Ø400</td>
+            <td>Galvanisert stål</td>
+            <td>stk</td>
+            <td><em>På forespørsel</em></td>
+            <td>Segmentert / presset</td>
+          </tr>
+          <tr>
+            <td>Overgang</td>
+            <td>Rund ↔ Rektangulær</td>
+            <td>Galvanisert stål</td>
+            <td>stk</td>
+            <td><em>På forespørsel</em></td>
+            <td>Etter tegning</td>
+          </tr>
+          <tr>
+            <td>Lokk</td>
+            <td>Rund / Rektangulær</td>
+            <td>Galvanisert stål</td>
+            <td>stk</td>
+            <td><em>På forespørsel</em></td>
+            <td>Standard</td>
+          </tr>
+          <tr>
+            <td>Rister</td>
+            <td>Vegg/fasade</td>
+            <td>Galvanisert / lakkert</td>
+            <td>stk</td>
+            <td><em>På forespørsel</em></td>
+            <td>Med/uten netting</td>
+          </tr>
+          <tr>
+            <td>Regnhatter</td>
+            <td>Utløp på tak</td>
+            <td>Galvanisert stål</td>
+            <td>stk</td>
+            <td><em>På forespørsel</em></td>
+            <td>Utendørs</td>
+          </tr>
+          <tr>
+            <td>Takadaptere</td>
+            <td>Etter mål</td>
+            <td>Galvanisert stål</td>
+            <td>stk</td>
+            <td><em>På forespørsel</em></td>
+            <td>Rammesett/adapter</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="grid cols-2">
+        <section class="note">
+          <h3>Spesialmål & prosjekt</h3>
+          <p>
+            Send <strong>tegninger eller mål</strong> til oss, så beregner vi raskt materialpris og levering.
+            For andre materialer (f.eks. syrefast) – oppgi ønsket kvalitet.
+          </p>
+          <p>
+            E-post: <a href="mailto:isolerigniemi@gmail.com">isolerigniemi@gmail.com</a> ·
+            WhatsApp: <a href="https://wa.me/358402434364" rel="noopener">+358 40 243 4364</a>
+          </p>
+        </section>
+
+        <section class="note">
+          <h3>Betingelser (kort)</h3>
+          <ul>
+            <li><strong>Valuta:</strong> NOK</li>
+            <li><strong>Prisgrunnlag:</strong> Standardmål som over; spesialmål etter avtale</li>
+            <li><strong>Levering:</strong> Etter avtale; mulighet for hurtiglevering</li>
+            <li><strong>Dokumentasjon:</strong> PDF-dokumentasjon følger med</li>
+            <li><strong>Gyldighet:</strong> Til priser oppdateres</li>
+          </ul>
+          <p class="muted">Detaljerte vilkår fås på forespørsel.</p>
+        </section>
+      </div>
+
+      <h2>Rabatter & volum</h2>
+      <p class="muted">
+        Ved større bestillinger og faste avtaler tilbyr vi prosjekt-/volumrabatt. Ta kontakt – vi regner en skarp pris.
+      </p>
+
+      <p>
+        <a class="btn" href="kontakt.html">Be om tilbud</a>
+        <a class="btn secondary" href="product/produkter.html">Til produkter</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Niemi Isolering. Alle rettigheter forbeholdes.</p>
+    </div>
+  </footer>
+</body>
+</html>
