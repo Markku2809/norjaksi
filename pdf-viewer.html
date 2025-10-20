@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Niemi Isolering – PDF-katalog</title>
   <meta name="description" content="Se og last ned kataloger og prislister i PDF-format." />
-  <link rel="icon" href="../assets/favicon.ico" />
   <link rel="stylesheet" href="./style.css" />
   <style>
     .container{max-width:1100px;margin:0 auto;padding:clamp(16px,2vw,24px)}
@@ -18,15 +17,12 @@
     .viewer{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:10px}
     .toolbar{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0 10px}
     iframe{width:100%;height:75vh;border:0;border-radius:8px}
-    .muted{opacity:.85}
-    .btn{display:inline-block;background:linear-gradient(90deg,var(--brand),#86e2ae);color:#06351f;font-weight:700;padding:10px 14px;border-radius:10px;border:none;text-decoration:none}
-    .btn-outline{display:inline-block;border:1px solid rgba(0,0,0,.15);padding:10px 14px;border-radius:10px;text-decoration:none}
   </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="./index.html">Niemi Isolering</a>
+    <div class="container topbar">
+      <div class="brand">NIEMI ISOLERING</div>
       <nav class="menu">
         <a href="./index.html">Forside</a>
         <a href="./produkter.html">Produkter</a>
@@ -38,31 +34,31 @@
 
   <main class="container">
     <h1>PDF-katalog & dokumenter</h1>
-    <p class="muted">Se dokument til høyre. Klikk i listen for å bytte. Du kan også laste ned PDF-filen.</p>
+    <p class="muted">Klikk i listen for å bytte dokument. Du kan også laste ned PDF-filen.</p>
 
     <div class="grid">
-      <!-- Vasemman laidan lista -->
       <aside class="list" id="pdf-list">
-        <a href="/pdf/Niemi_Isolering_Katalog_NO.pdf" data-title="Katalog (NO)" class="active">Katalog (NO)</a>
-        <a href="/pdf/Niemi_Isolering_Prisliste_NO.pdf" data-title="Prisliste (NO)">Prisliste (NO)</a>
-        <!-- Halutessasi lisää: -->
-        <!-- <a href="/pdf/Niemi_Isolering_Katalog_DK.pdf" data-title="Katalog (DK)">Katalog (DK)</a> -->
+        <a href="./pdf/Niemi_Isolering_Katalog_NO.pdf" data-title="Katalog (NO)" class="active">Katalog (NO)</a>
+        <a href="./pdf/Niemi_Isolering_Prisliste_NO.pdf" data-title="Prisliste (NO)">Prisliste (NO)</a>
       </aside>
 
-      <!-- Oikea katselualue -->
       <section class="viewer">
         <div class="toolbar">
-          <a id="download" class="btn" href="/pdf/Niemi_Isolering_Katalog_NO.pdf" download>Last ned PDF</a>
-          <a id="open-new" class="btn-outline" href="/pdf/Niemi_Isolering_Katalog_NO.pdf" target="_blank" rel="noopener">Åpne i ny fane</a>
+          <a id="download" class="btn" href="./pdf/Niemi_Isolering_Katalog_NO.pdf" download>Last ned PDF</a>
+          <a id="open-new" class="btn btn-outline" href="./pdf/Niemi_Isolering_Katalog_NO.pdf" target="_blank" rel="noopener">Åpne i ny fane</a>
         </div>
-        <iframe id="frame" src="/pdf/Niemi_Isolering_Katalog_NO.pdf" title="Katalog (NO)"></iframe>
+        <iframe id="frame" src="./pdf/Niemi_Isolering_Katalog_NO.pdf" title="Katalog (NO)"></iframe>
       </section>
     </div>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>© Niemi Isolering. Alle rettigheter forbeholdes.</p>
+      <div class="divider"></div>
+      <div class="footer-grid">
+        <div class="small"><strong>Niemi Isolering</strong><br/>Ventilasjon & Metall</div>
+        <div class="small">E-post: <a href="mailto:isolerigniemi@gmail.com">isolerigniemi@gmail.com</a><br/>WhatsApp: <a href="https://wa.me/358402434364" rel="noopener">+358 40 243 4364</a></div>
+      </div>
     </div>
   </footer>
 
@@ -72,21 +68,15 @@
       const frame = document.getElementById('frame');
       const dl = document.getElementById('download');
       const open = document.getElementById('open-new');
-
       list.addEventListener('click', function(e){
-        const a = e.target.closest('a');
-        if(!a) return;
+        const a = e.target.closest('a'); if(!a) return;
         e.preventDefault();
         const url = a.getAttribute('href');
         const title = a.dataset.title || 'PDF';
-        // active-luokka
         list.querySelectorAll('a').forEach(x=>x.classList.remove('active'));
         a.classList.add('active');
-        // Päivitä katselu ja linkit
-        frame.src = url;
-        frame.title = title;
-        dl.href = url;
-        open.href = url;
+        frame.src = url; frame.title = title;
+        dl.href = url; open.href = url;
       });
     })();
   </script>
