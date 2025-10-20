@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Niemi Isolering – Kontakt</title>
+  <meta name="description" content="Ta kontakt for tilbud, spesialmål og spørsmål. Rask respons via e-post eller WhatsApp." />
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .container{max-width:1100px;margin:0 auto;padding:1rem}
+    header,footer{border-bottom:1px solid #eee}
+    footer{border-bottom:none;border-top:1px solid #eee;margin-top:2rem}
+    .logo{text-decoration:none;font-weight:700}
+    .grid{display:grid;gap:1.25rem}
+    @media(min-width:900px){.grid.cols-2{grid-template-columns:1fr 1fr}}
+    .card{border:1px solid #e6e6e6;border-radius:14px;padding:1rem}
+    .muted{opacity:.85}
+    .form-row{display:grid;gap:.5rem;margin:.6rem 0}
+    .form-row.half{grid-template-columns:1fr}
+    @media(min-width:640px){.form-row.half{grid-template-columns:1fr 1fr}}
+    label{font-weight:600}
+    input,select,textarea{width:100%;padding:.7rem;border:1px solid #ccc;border-radius:10px}
+    .btn{display:inline-block;padding:.7rem 1rem;border-radius:10px;border:1px solid #222;text-decoration:none;cursor:pointer}
+    .btn.secondary{border-color:#888}
+    .inline{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+    .map{aspect-ratio:16/9;background:#f7f7f7;border:1px dashed #ccc;border-radius:12px;display:flex;align-items:center;justify-content:center}
+    .chips{display:flex;gap:.5rem;flex-wrap:wrap}
+    .chip{border:1px solid #ccc;border-radius:999px;padding:.15rem .6rem;font-size:.85rem}
+    .help{font-size:.9rem}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html" aria-label="Niemi Isolering">Niemi Isolering</a>
+      <nav class="nav">
+        <a href="index.html">Forside</a>
+        <a href="product/produkter.html">Produkter</a>
+        <a href="hinnasto.html">Prisliste</a>
+        <a href="kontakt.html" aria-current="page">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>Kontakt oss</h1>
+      <p class="muted">Trenger du <strong>spesialmål</strong>, <strong>tilbud</strong> eller har tekniske spørsmål? Send oss tegninger eller mål – vi svarer raskt.</p>
+
+      <div class="grid cols-2">
+        <!-- Kontaktlomake -->
+        <section class="card" aria-labelledby="contact-form-heading">
+          <h2 id="contact-form-heading">Send forespørsel</h2>
+          <form id="contact-form" action="#" method="post" novalidate>
+            <div class="form-row half">
+              <div>
+                <label for="name">Navn</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div>
+                <label for="company">Firma (valgfritt)</label>
+                <input id="company" name="company" type="text" autocomplete="organization" />
+              </div>
+            </div>
+
+            <div class="form-row half">
+              <div>
+                <label for="email">E-post</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div>
+                <label for="phone">Telefon / WhatsApp</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label for="topic">Emne</label>
+              <select id="topic" name="topic" required>
+                <option value="">Velg emne…</option>
+                <option>Tilbud / materialpris</option>
+                <option>Spesialmål etter tegning</option>
+                <option>Standardprodukter</option>
+                <option>Levering & dokumentasjon</option>
+                <option>Annet</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="message">Melding</label>
+              <textarea id="message" name="message" rows="6" placeholder="Beskriv delene (mål, materiale) eller legg ved lenke til tegninger." required></textarea>
+              <p class="help muted">Vedlegg: send tegninger på e-post etter innsending – vi kobler dem til denne forespørselen.</p>
+            </div>
+
+            <div class="inline">
+              <button class="btn" type="submit">Send</button>
+              <button class="btn secondary" type="reset">Tøm skjema</button>
+            </div>
+
+            <p id="form-status" class="help" role="status" aria-live="polite"></p>
+
+            <p class="help muted">
+              Ved å sende skjemaet godtar du at vi behandler opplysningene for å svare på henvendelsen. Vi deler ikke data med tredjeparter.
+            </p>
+          </form>
+        </section>
+
+        <!-- Yhteystiedot -->
+        <aside class="card" aria-labelledby="contact-direct">
+          <h2 id="contact-direct">Direkte kontakt</h2>
+          <p>
+            E-post: <a href="mailto:isolerigniemi@gmail.com">isolerigniemi@gmail.com</a><br/>
+            WhatsApp: <a href="https://wa.me/358402434364" rel="noopener">+358 40 243 4364</a>
+          </p>
+
+          <h3>Åpningstider</h3>
+          <p class="muted">Man–Fre 08:00–16:00 (EET) · Avtalt henting/levering.</p>
+
+          <h3>Hva kan vi hjelpe med?</h3>
+          <div class="chips" aria-label="Typiske forespørsler">
+            <span class="chip">Materialpris</span>
+            <span class="chip">Standardkanaler</span>
+            <span class="chip">Spesialmål</span>
+            <span class="chip">PDF-dokumentasjon</span>
+            <span class="chip">Levering</span>
+          </div>
+
+          <h3>Kart</h3>
+          <div class="map" role="img" aria-label="Kartplassholder">
+            <span class="muted">Kart (legg inn Google Maps-innbygging ved behov)</span>
+          </div>
+        </aside>
+      </div>
+
+      <section class="card" aria-labelledby="email-tip">
+        <h2 id="email-tip">Slik får vi regnet raskt</h2>
+        <ul>
+          <li>Legg ved <strong>mål</strong> (Ø, B×H, lengde), <strong>materiale</strong> og <strong>antall</strong>.</li>
+          <li>For overganger: spesifiser <em>fra</em> og <em>til</em> dimensjon (f.eks. Ø160 → 200×100).</li>
+          <li>For utendørsdeler: angi om <em>lakkert</em> overflate ønskes.</li>
+          <li>Send gjerne <strong>PDF/DWG</strong> på e-post.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Niemi Isolering. Alle rettigheter forbeholdes.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hyvin kevyt validointi + "lähetetty"-tila (mock). Voit vaihtaa actionin backendiin.
+    (function(){
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById('form-status');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        status.textContent = '';
+        const data = new FormData(form);
+        const required = ['name','email','topic','message'];
+        for (const k of required){
+          if(!data.get(k) || String(data.get(k)).trim()===''){
+            status.textContent = 'Fyll inn alle obligatoriske felter.';
+            status.style.color = '#b00020';
+            return;
+          }
+        }
+        // Mock-kuittaus
+        status.textContent = 'Takk! Vi har mottatt forespørselen din og svarer snart på e-post.';
+        status.style.color = 'inherit';
+        form.reset();
+      });
+    })();
+  </script>
+</body>
+</html>
