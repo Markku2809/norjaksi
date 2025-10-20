@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Niemi Isolering – Produkter</title>
+  <meta name="description" content="Standardkanaler og komponenter, spesialmål etter avtale. Rask levering og tydelig dokumentasjon." />
+  <link rel="icon" href="../assets/favicon.ico" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <style>
+    /* Kevyt varmistus jos oma CSS puuttuu */
+    .container{max-width:1100px;margin:0 auto;padding:1rem}
+    .grid{display:grid;gap:1rem}
+    .grid.cards{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{border:1px solid #ddd;border-radius:12px;padding:1rem}
+    .card h3{margin:0 0 .5rem}
+    .muted{opacity:.8}
+    .badge{display:inline-block;border:1px solid #ccc;border-radius:999px;padding:.1rem .6rem;font-size:.85rem}
+    .toolbar{display:flex;gap:.75rem;flex-wrap:wrap;margin:.5rem 0 1rem}
+    .toolbar input,.toolbar select{padding:.6rem;border:1px solid #ccc;border-radius:10px}
+    .btn{display:inline-block;padding:.7rem 1rem;border-radius:10px;border:1px solid #222;text-decoration:none}
+    .btn.secondary{border-color:#888}
+    .table{width:100%;border-collapse:collapse}
+    .table th,.table td{border-bottom:1px solid #eee;padding:.6rem;text-align:left}
+    .breadcrumbs{font-size:.9rem;margin:.5rem 0 1rem}
+    .breadcrumbs a{text-decoration:none}
+    .cta{background:#f7f7f7;border-radius:14px;padding:1rem}
+    header,footer{border-bottom:1px solid #eee}
+    footer{border-bottom:none;border-top:1px solid #eee;margin-top:2rem}
+    .logo{text-decoration:none;font-weight:700}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="../index.html" aria-label="Niemi Isolering">Niemi Isolering</a>
+      <nav class="nav">
+        <a href="../index.html">Forside</a>
+        <a href="./produkter.html" aria-current="page">Produkter</a>
+        <a href="../hinnasto.html">Prisliste</a>
+        <a href="../kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs">
+        <a href="../index.html">Forside</a> &nbsp;/&nbsp; Produkter
+      </nav>
+
+      <h1>Produkter</h1>
+      <p class="muted">Standardkanaler og komponenter på lager. Spesialmål produseres etter avtale. All levering med tydelig PDF-dokumentasjon.</p>
+
+      <!-- Työkalupalkki: haku + suodatus -->
+      <div class="toolbar" role="search">
+        <input id="search" type="search" placeholder="Søk produkt (f.eks. kanal, albue, overgang)..." aria-label="Søk produkter" />
+        <select id="category" aria-label="Kategori">
+          <option value="">Alle kategorier</option>
+          <option value="kanaler">Kanaler</option>
+          <option value="koblinger">Tilkoblinger</option>
+          <option value="albuer">Albuer</option>
+          <option value="overganger">Overganger</option>
+          <option value="lokk">Lokk</option>
+          <option value="rister">Rister</option>
+          <option value="regnhatter">Regnhatter</option>
+          <option value="takadaptere">Takadaptere</option>
+        </select>
+        <a class="btn secondary" href="../pdf-viewer.html">Åpne katalog (PDF)</a>
+      </div>
+
+      <!-- Korttinäkymä kategorioista -->
+      <section class="grid cards" id="cards">
+        <article class="card" data-cat="kanaler">
+          <h3>Standardkanaler</h3>
+          <p>Runde og rektangulære kanaler i standardmål. Tette skjøter og rene kutt.</p>
+          <p><span class="badge">På lager</span> <span class="badge">Standard</span></p>
+        </article>
+
+        <article class="card" data-cat="koblinger">
+          <h3>Tilkoblingsdeler</h3>
+          <p>Muffer, nipler og skjøtestykker for sikker montering.</p>
+          <p><span class="badge">Standard</span></p>
+        </article>
+
+        <article class="card" data-cat="albuer">
+          <h3>Albuer</h3>
+          <p>45° / 90° albuer, segmenterte og pressede.</p>
+          <p><span class="badge">Spesialmål mulig</span></p>
+        </article>
+
+        <article class="card" data-cat="overganger">
+          <h3>Overganger</h3>
+          <p>Rund-til-rund, rund-til-rektangulær og rektangulær-til-rektangulær.</p>
+          <p><span class="badge">Etter avtale</span></p>
+        </article>
+
+        <article class="card" data-cat="lokk">
+          <h3>Lokk</h3>
+          <p>Endelokk for runde og rektangulære kanaler.</p>
+          <p><span class="badge">Standard</span></p>
+        </article>
+
+        <article class="card" data-cat="rister">
+          <h3>Rister</h3>
+          <p>Værbestandige vegg- og fasaderister med netting ved behov.</p>
+          <p><span class="badge">Utendørs</span></p>
+        </article>
+
+        <article class="card" data-cat="regnhatter">
+          <h3>Regnhatter</h3>
+          <p>Beskyttende hetter for utløp på tak.</p>
+          <p><span class="badge">Utendørs</span></p>
+        </article>
+
+        <article class="card" data-cat="takadaptere">
+          <h3>Takadaptere</h3>
+          <p>Adaptere og rammer for sikker takgjennomføring.</p>
+          <p><span class="badge">Etter mål</span></p>
+        </article>
+      </section>
+
+      <!-- Esimerkkimittataulukko (voit korvata omilla mitoilla) -->
+      <section aria-labelledby="sizes">
+        <h2 id="sizes">Typiske standardmål</h2>
+        <table class="table" id="size-table">
+          <thead>
+            <tr>
+              <th>Produkt</th>
+              <th>Dimensjon</th>
+              <th>Materiale</th>
+              <th>Merknad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kanal, rund</td>
+              <td>Ø100–Ø400</td>
+              <td>Galvanisert stål</td>
+              <td>Lagerføres</td>
+            </tr>
+            <tr>
+              <td>Kanal, rektangulær</td>
+              <td>Fra 100×100 til 1000×500</td>
+              <td>Galvanisert stål</td>
+              <td>Spesialmål på bestilling</td>
+            </tr>
+            <tr>
+              <td>Albue 90°</td>
+              <td>Ø125–Ø400</td>
+              <td>Galvanisert stål</td>
+              <td>Segmentert</td>
+            </tr>
+            <tr>
+              <td>Overgang rund→rektangulær</td>
+              <td>Ø160 → 200×100</td>
+              <td>Galvanisert stål</td>
+              <td>Etter tegning</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="muted">Alle mål kan tilpasses etter tegning eller mål. For andre materialer (f.eks. syrefast), ta kontakt.</p>
+      </section>
+
+      <!-- CTA til tarjouksen pyyntö -->
+      <section class="cta" aria-labelledby="offer">
+        <h2 id="offer">Trenger du spesialmål eller tilbud?</h2>
+        <p>Send oss tegninger eller mål – vi kalkulerer raskt materialpris og levering.</p>
+        <p>
+          E-post: <a href="mailto:isolerigniemi@gmail.com">isolerigniemi@gmail.com</a> ·
+          WhatsApp: <a href="https://wa.me/358402434364" rel="noopener">+358 40 243 4364</a>
+        </p>
+        <p>
+          <a class="btn" href="../kontakt.html">Kontakt oss</a>
+          <a class="btn secondary" href="../hinnasto.html">Se prisliste</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Niemi Isolering. Alle rettigheter forbeholdes.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Kevyt haku/suodatus ilman kirjastoja
+    (function(){
+      const q = document.getElementById('search');
+      const cat = document.getElementById('category');
+      const cards = Array.from(document.querySelectorAll('#cards .card'));
+      function apply(){
+        const t = (q.value || '').toLowerCase();
+        const c = cat.value;
+        cards.forEach(card=>{
+          const inCat = !c || card.dataset.cat === c;
+          const text = card.innerText.toLowerCase();
+          const hit = !t || text.includes(t);
+          card.style.display = (inCat && hit) ? '' : 'none';
+        });
+      }
+      q && q.addEventListener('input', apply);
+      cat && cat.addEventListener('change', apply);
+    })();
+  </script>
+</body>
+</html>
