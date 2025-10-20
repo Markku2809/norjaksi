@@ -77,8 +77,9 @@
       text-decoration: none;
       font-weight: 700;
       transition: background .2s;
+      cursor: pointer;
     }
-    .btn { background: #2f855a; color: #fff; }
+    .btn { background: #2f855a; color: #fff; border: 2px solid transparent; }
     .btn:hover { background: #276749; }
     .btn-outline { border: 2px solid #2f855a; color: #2f855a; background: transparent; }
     .btn-outline:hover { background: #e6f4ed; }
@@ -119,6 +120,9 @@
       <!-- ===== OIKEA KATSELUALUE ===== -->
       <section class="viewer">
         <div class="toolbar">
+          <a href="./index.html" class="btn-outline">← Tilbake til forsiden</a>
+          <button id="prev" class="btn-outline">⟨ Forrige</button>
+          <button id="next" class="btn-outline">Neste ⟩</button>
           <a id="download" class="btn" href="./pdf/niemi_isolering_forside.pdf" download>Last ned PDF</a>
           <a id="open-new" class="btn-outline" href="./pdf/niemi_isolering_forside.pdf" target="_blank" rel="noopener">Åpne i ny fane</a>
         </div>
@@ -139,18 +143,36 @@
       const frame = document.getElementById('frame');
       const dl = document.getElementById('download');
       const open = document.getElementById('open-new');
-      list.addEventListener('click', function(e){
-        const a = e.target.closest('a');
-        if(!a) return;
-        e.preventDefault();
-        const url = a.getAttribute('href');
-        const title = a.dataset.title || 'PDF';
-        list.querySelectorAll('a').forEach(x => x.classList.remove('active'));
+      const links = Array.from(list.querySelectorAll('a'));
+      const prevBtn = document.getElementById('prev');
+      const nextBtn = document.getElementById('next');
+
+      function openPdf(a) {
+        if (!a) return;
+        links.forEach(x => x.classList.remove('active'));
         a.classList.add('active');
+        const url = a.getAttribute('href');
         frame.src = url;
-        frame.title = title;
+        frame.title = a.dataset.title || 'PDF';
         dl.href = url;
         open.href = url;
+      }
+
+      list.addEventListener('click', e => {
+        const a = e.target.closest('a');
+        if (!a) return;
+        e.preventDefault();
+        openPdf(a);
+      });
+
+      prevBtn.addEventListener('click', () => {
+        const currentIndex = links.findIndex(x => x.classList.contains('active'));
+        if (currentIndex > 0) openPdf(links[currentIndex - 1]);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        const currentIndex = links.findIndex(x => x.classList.contains('active'));
+        if (currentIndex < links.length - 1) openPdf(links[currentIndex + 1]);
       });
     })();
   </script>
