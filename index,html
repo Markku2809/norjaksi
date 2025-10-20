@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Niemi Isolering – Ventilasjon & metallprodukter</title>
+  <meta name="description" content="Ventilasjonssystemer og metallprodukter av høy kvalitet. Presisjon i hvert snitt – kvalitet i hver detalj. Gode priser og rask levering." />
+  <link rel="icon" href="assets/favicon.ico" />
+  <!-- Jos sinulla on tyylitiedosto: pidä sama polku kuin DK-versiossa -->
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html" aria-label="Niemi Isolering">Niemi Isolering</a>
+      <nav class="nav">
+        <a href="index.html">Forside</a>
+        <a href="produkter.html">Produkter</a>
+        <a href="hinnasto.html">Prisliste</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Ventilasjonssystemer og metallprodukter av høy kvalitet</h1>
+        <p>Presisjon i hvert snitt – kvalitet i hver detalj. Gode priser og rask levering.</p>
+        <div class="hero-ctas">
+          <a class="btn" href="produkter.html">Se produkter</a>
+          <a class="btn btn-secondary" href="hinnasto.html">Se prisliste</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- USP-rivi -->
+    <section class="usp">
+      <div class="container grid">
+        <div class="card">
+          <h3>Standard & spesialmål</h3>
+          <p>Komponenter og kanaler produsert etter standardmål – og mulighet for spesialmål etter avtale.</p>
+        </div>
+        <div class="card">
+          <h3>Isoleringskledning</h3>
+          <p>Isoleringsbekledning/kledning utført med presisjon og erfaring.</p>
+        </div>
+        <div class="card">
+          <h3>Tydelig dokumentasjon</h3>
+          <p>Leveranser med tydelig PDF-dokumentasjon – lett å planlegge og montere.</p>
+        </div>
+        <div class="card">
+          <h3>Direkte dialog</h3>
+          <p>Snakk direkte med produsenten. Vi finner løsningen som passer din oppgave – stor som liten.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tarjouspyyntö -->
+    <section class="cta">
+      <div class="container">
+        <h2>Trenger du et tilbud?</h2>
+        <p>Send oss tegninger eller mål på delene du ønsker – vi beregner raskt materialpris og levering.</p>
+        <div class="cta-actions">
+          <a class="btn" href="kontakt.html">Kontakt oss</a>
+          <a class="btn btn-secondary" href="pdf-viewer.html">Åpne katalog (PDF)</a>
+        </div>
+        <p class="contact-inline">
+          E-post: <a href="mailto:isolerigniemi@gmail.com">isolerigniemi@gmail.com</a> ·
+          WhatsApp: <a href="https://wa.me/358402434364" rel="noopener">+358 40 243 4364</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Esimerkkilista tuotteista (voit poistaa jos DK-versiossa ei ole tätä osuutta) -->
+    <section class="products-preview">
+      <div class="container">
+        <h2>Utvalgte produktkategorier</h2>
+        <ul class="bullets">
+          <li>Standardkanaler og tilkoblingsdeler</li>
+          <li>Albuer, overganger og lokk</li>
+          <li>Værbestandige rister og regnhatter</li>
+          <li>Takadaptere, veggrister og rammer</li>
+        </ul>
+        <p><a href="produkter.html" class="link">Se hele utvalget →</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Niemi Isolering. Alle rettigheter forbeholdes.</p>
+      <p>E-post: <a href="mailto:isolerigniemi@gmail.com">isolerigniemi@gmail.com</a> · WhatsApp: <a href="https://wa.me/358402434364">+358 40 243 4364</a></p>
+    </div>
+  </footer>
+</body>
+</html>
