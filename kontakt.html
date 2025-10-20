@@ -5,22 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Niemi Isolering – Kontakt</title>
   <meta name="description" content="Ta kontakt for tilbud, spesialmål og spørsmål. Rask respons via e-post eller WhatsApp." />
-  <link rel="icon" href="assets/favicon.ico" />
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="./assets/favicon.ico" />
+  <!-- Ulkoinen tyylitiedosto tästä repossa -->
+  <link rel="stylesheet" href="./style.css" />
   <style>
+    /* Kevyt perus-layout; varsinainen ilme tulee style.css:stä */
     .container{max-width:1100px;margin:0 auto;padding:1rem}
     header,footer{border-bottom:1px solid #eee}
     footer{border-bottom:none;border-top:1px solid #eee;margin-top:2rem}
     .logo{text-decoration:none;font-weight:700}
+    .nav a{margin-right:12px}
     .grid{display:grid;gap:1.25rem}
     @media(min-width:900px){.grid.cols-2{grid-template-columns:1fr 1fr}}
-    .card{border:1px solid #e6e6e6;border-radius:14px;padding:1rem}
+    .card{border:1px solid #e6e6e6;border-radius:14px;padding:1rem;background:#fff}
     .muted{opacity:.85}
     .form-row{display:grid;gap:.5rem;margin:.6rem 0}
     .form-row.half{grid-template-columns:1fr}
     @media(min-width:640px){.form-row.half{grid-template-columns:1fr 1fr}}
     label{font-weight:600}
-    input,select,textarea{width:100%;padding:.7rem;border:1px solid #ccc;border-radius:10px}
+    input,select,textarea{width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:10px}
     .btn{display:inline-block;padding:.7rem 1rem;border-radius:10px;border:1px solid #222;text-decoration:none;cursor:pointer}
     .btn.secondary{border-color:#888}
     .inline{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
@@ -28,17 +31,19 @@
     .chips{display:flex;gap:.5rem;flex-wrap:wrap}
     .chip{border:1px solid #ccc;border-radius:999px;padding:.15rem .6rem;font-size:.85rem}
     .help{font-size:.9rem}
+    .ok{color:#166534}
+    .err{color:#b00020}
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container">
-      <a class="logo" href="index.html" aria-label="Niemi Isolering">Niemi Isolering</a>
-      <nav class="nav">
-        <a href="index.html">Forside</a>
-        <a href="product/produkter.html">Produkter</a>
-        <a href="hinnasto.html">Prisliste</a>
-        <a href="kontakt.html" aria-current="page">Kontakt</a>
+      <a class="logo" href="./index.html" aria-label="Niemi Isolering">Niemi Isolering</a>
+      <nav class="nav" aria-label="Hovedmeny">
+        <a href="./index.html">Forside</a>
+        <a href="./produkter.html">Produkter</a>
+        <a href="./hinnasto.html">Prisliste</a>
+        <a href="./kontakt.html" aria-current="page">Kontakt</a>
       </nav>
     </div>
   </header>
@@ -52,7 +57,9 @@
         <!-- Kontaktlomake -->
         <section class="card" aria-labelledby="contact-form-heading">
           <h2 id="contact-form-heading">Send forespørsel</h2>
-          <form id="contact-form" action="#" method="post" novalidate>
+
+          <!-- Vaihtoehto A: MAILTO-JS -->
+          <form id="contactForm" novalidate>
             <div class="form-row half">
               <div>
                 <label for="name">Navn</label>
@@ -152,26 +159,49 @@
   </footer>
 
   <script>
-    // Hyvin kevyt validointi + "lähetetty"-tila (mock). Voit vaihtaa actionin backendiin.
+    // Mailto-lähetys (Vaihtoehto A)
     (function(){
-      const form = document.getElementById('contact-form');
+      const form = document.getElementById('contactForm');
       const status = document.getElementById('form-status');
+      const TO = 'isolerigniemi@gmail.com';
+
       form.addEventListener('submit', function(e){
         e.preventDefault();
         status.textContent = '';
-        const data = new FormData(form);
-        const required = ['name','email','topic','message'];
-        for (const k of required){
-          if(!data.get(k) || String(data.get(k)).trim()===''){
-            status.textContent = 'Fyll inn alle obligatoriske felter.';
-            status.style.color = '#b00020';
-            return;
-          }
+
+        const name = form.name.value.trim();
+        const company = form.company.value.trim();
+        const email = form.email.value.trim();
+        const phone = form.phone.value.trim();
+        const topic = form.topic.value.trim();
+        const message = form.message.value.trim();
+
+        if(!name || !email || !topic || !message){
+          status.textContent = 'Fyll inn alle obligatoriske felter (Navn, E-post, Emne, Melding).';
+          status.className = 'help err';
+          return;
         }
-        // Mock-kuittaus
-        status.textContent = 'Takk! Vi har mottatt forespørselen din og svarer snart på e-post.';
-        status.style.color = 'inherit';
-        form.reset();
+
+        // mailto-otsikko ja runko
+        const subject = `Henvendelse (${topic}) – ${name}`;
+        const bodyLines = [
+          `Navn: ${name}`,
+          `Firma: ${company || '-'}`,
+          `E-post: ${email}`,
+          `Telefon/WhatsApp: ${phone || '-'}`,
+          `Emne: ${topic}`,
+          '',
+          'Melding:',
+          message
+        ];
+        const body = encodeURIComponent(bodyLines.join('\n'));
+
+        // Avataan käyttäjän sähköpostisovellus
+        window.location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+        // Käyttäjäpalaute sivulla
+        status.textContent = 'Avataan e-postisovellus. Hvis vindu ikke åpnes, send e-post til isolerigniemi@gmail.com.';
+        status.className = 'help ok';
       });
     })();
   </script>
