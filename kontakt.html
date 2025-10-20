@@ -6,10 +6,8 @@
   <title>Niemi Isolering – Kontakt</title>
   <meta name="description" content="Ta kontakt for tilbud, spesialmål og spørsmål. Rask respons via e-post eller WhatsApp." />
   <link rel="icon" href="./assets/favicon.ico" />
-  <!-- Ulkoinen tyylitiedosto tästä repossa -->
   <link rel="stylesheet" href="./style.css" />
   <style>
-    /* Kevyt perus-layout; varsinainen ilme tulee style.css:stä */
     .container{max-width:1100px;margin:0 auto;padding:1rem}
     header,footer{border-bottom:1px solid #eee}
     footer{border-bottom:none;border-top:1px solid #eee;margin-top:2rem}
@@ -54,11 +52,11 @@
       <p class="muted">Trenger du <strong>spesialmål</strong>, <strong>tilbud</strong> eller har tekniske spørsmål? Send oss tegninger eller mål – vi svarer raskt.</p>
 
       <div class="grid cols-2">
-        <!-- Kontaktlomake -->
+        <!-- Skjema -->
         <section class="card" aria-labelledby="contact-form-heading">
           <h2 id="contact-form-heading">Send forespørsel</h2>
 
-          <!-- Vaihtoehto A: MAILTO-JS -->
+          <!-- Formspree-lomake (POST) -->
           <form id="contactForm" novalidate>
             <div class="form-row half">
               <div>
@@ -97,8 +95,11 @@
             <div class="form-row">
               <label for="message">Melding</label>
               <textarea id="message" name="message" rows="6" placeholder="Beskriv delene (mål, materiale) eller legg ved lenke til tegninger." required></textarea>
-              <p class="help muted">Vedlegg: send tegninger på e-post etter innsending – vi kobler dem til denne forespørselen.</p>
+              <p class="help muted">Vedlegg: send tegninger på e-post – vi kobler dem til forespørselen.</p>
             </div>
+
+            <!-- Roskaposti-huntti -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div class="inline">
               <button class="btn" type="submit">Send</button>
@@ -106,14 +107,11 @@
             </div>
 
             <p id="form-status" class="help" role="status" aria-live="polite"></p>
-
-            <p class="help muted">
-              Ved å sende skjemaet godtar du at vi behandler opplysningene for å svare på henvendelsen. Vi deler ikke data med tredjeparter.
-            </p>
+            <p class="help muted">Ved å sende skjemaet godtar du at vi behandler opplysningene for å svare på henvendelsen.</p>
           </form>
         </section>
 
-        <!-- Yhteystiedot -->
+        <!-- Direkte kontakt -->
         <aside class="card" aria-labelledby="contact-direct">
           <h2 id="contact-direct">Direkte kontakt</h2>
           <p>
@@ -159,49 +157,65 @@
   </footer>
 
   <script>
-    // Mailto-lähetys (Vaihtoehto A)
-    (function(){
-      const form = document.getElementById('contactForm');
-      const status = document.getElementById('form-status');
-      const TO = 'isolerigniemi@gmail.com';
+    // ==== Formspree-lähetys ====
+    // 1) Luo ilmainen lomake: https://formspree.io/
+    // 2) Kopioi endpoint (muotoa https://formspree.io/f/abcdwxyz)
+    // 3) Liitä se tähän muuttujaan:
+    const FORM_ENDPOINT = "https://formspree.io/f/PASTA_TAHAN_OMA_ENDPOINT";
 
-      form.addEventListener('submit', function(e){
+    (function(){
+      const form   = document.getElementById('contactForm');
+      const status = document.getElementById('form-status');
+
+      form.addEventListener('submit', async function(e){
         e.preventDefault();
+        status.className = 'help';
         status.textContent = '';
 
-        const name = form.name.value.trim();
-        const company = form.company.value.trim();
-        const email = form.email.value.trim();
-        const phone = form.phone.value.trim();
-        const topic = form.topic.value.trim();
-        const message = form.message.value.trim();
+        // Kevyt validointi
+        const data = new FormData(form);
+        const required = ['name','email','topic','message'];
+        for (const k of required){
+          if(!data.get(k) || String(data.get(k)).trim()===''){
+            status.textContent = 'Fyll inn alle obligatoriske felter (Navn, E-post, Emne, Melding).';
+            status.classList.add('err');
+            return;
+          }
+        }
 
-        if(!name || !email || !topic || !message){
-          status.textContent = 'Fyll inn alle obligatoriske felter (Navn, E-post, Emne, Melding).';
-          status.className = 'help err';
+        // Jos endpoint puuttuu, kerrotaan käyttäjälle
+        if (!FORM_ENDPOINT || FORM_ENDPOINT.includes('PASTA_TAHAN_OMA_ENDPOINT')){
+          status.textContent = 'Skjema er nesten klart – legg inn Formspree-endepunkt i koden.';
+          status.classList.add('err');
           return;
         }
 
-        // mailto-otsikko ja runko
-        const subject = `Henvendelse (${topic}) – ${name}`;
-        const bodyLines = [
-          `Navn: ${name}`,
-          `Firma: ${company || '-'}`,
-          `E-post: ${email}`,
-          `Telefon/WhatsApp: ${phone || '-'}`,
-          `Emne: ${topic}`,
-          '',
-          'Melding:',
-          message
-        ];
-        const body = encodeURIComponent(bodyLines.join('\n'));
+        // Muodosta lähetettävä data (lisätään otsikko)
+        data.append('_subject', `Henvendelse (${data.get('topic')}) – ${data.get('name')}`);
+        // Valinnainen: ohjaa kiitokseen
+        // data.append('_redirect', 'https://no.niemi-isolering.com/kontakt.html?sent=1');
 
-        // Avataan käyttäjän sähköpostisovellus
-        window.location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${body}`;
+        try{
+          const res = await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: data
+          });
 
-        // Käyttäjäpalaute sivulla
-        status.textContent = 'Avataan e-postisovellus. Hvis vindu ikke åpnes, send e-post til isolerigniemi@gmail.com.';
-        status.className = 'help ok';
+          if(res.ok){
+            status.textContent = 'Takk! Forespørselen er sendt. Vi svarer så snart som mulig.';
+            status.classList.remove('err'); status.classList.add('ok');
+            form.reset();
+          }else{
+            const r = await res.json().catch(()=>({}));
+            const msg = (r && r.error) ? r.error : 'Noe gikk galt ved sending. Prøv igjen senere.';
+            status.textContent = msg;
+            status.classList.add('err');
+          }
+        }catch(err){
+          status.textContent = 'Klarte ikke å sende (nettverksfeil). Prøv igjen senere.';
+          status.classList.add('err');
+        }
       });
     })();
   </script>
