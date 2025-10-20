@@ -4,62 +4,133 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Niemi Isolering – PDF-katalog</title>
-  <meta name="description" content="Se og last ned kataloger og prislister i PDF-format." />
-  <link rel="stylesheet" href="./style.css" />
+  <meta name="description" content="Se og last ned alle PDF-sider av Niemi Isolering sitt produktutvalg." />
   <style>
-    .container{max-width:1100px;margin:0 auto;padding:clamp(16px,2vw,24px)}
-    .grid{display:grid;gap:16px}
-    @media(min-width:950px){.grid{grid-template-columns:280px 1fr}}
-    .list{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px}
-    .list a{display:block;padding:.75rem 1rem;border-bottom:1px solid #eee;text-decoration:none}
-    .list a:hover{background:rgba(0,0,0,.04)}
-    .list a.active{background:rgba(47,191,113,.10);font-weight:700}
-    .viewer{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:10px}
-    .toolbar{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0 10px}
-    iframe{width:100%;height:75vh;border:0;border-radius:8px}
+    body {
+      font-family: system-ui, Inter, sans-serif;
+      margin: 0;
+      background: linear-gradient(180deg, #c9d8e6 0%, #eef4f9 100%);
+      color: #1a202c;
+    }
+    header {
+      padding: 1rem 0;
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 950px) {
+      .grid { grid-template-columns: 280px 1fr; }
+    }
+    .list {
+      background: #fff;
+      border: 1px solid #d8e0e8;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .list a {
+      display: block;
+      padding: .75rem 1rem;
+      border-bottom: 1px solid #eef1f4;
+      text-decoration: none;
+      color: #1a202c;
+    }
+    .list a:hover {
+      background: #edf7f3;
+    }
+    .list a.active {
+      background: #d2f2df;
+      font-weight: 700;
+    }
+    .viewer {
+      background: #fff;
+      border: 1px solid #d8e0e8;
+      border-radius: 12px;
+      padding: .75rem;
+    }
+    iframe {
+      width: 100%;
+      height: 75vh;
+      border: none;
+      border-radius: 8px;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: .5rem;
+    }
+    .btn, .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .6rem 1rem;
+      border-radius: .6rem;
+      text-decoration: none;
+      font-weight: 700;
+      transition: background .2s;
+    }
+    .btn { background: #2f855a; color: #fff; }
+    .btn:hover { background: #276749; }
+    .btn-outline { border: 2px solid #2f855a; color: #2f855a; background: transparent; }
+    .btn-outline:hover { background: #e6f4ed; }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #4a5568;
+      font-size: .9rem;
+    }
   </style>
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="container topbar">
-      <div class="brand">NIEMI ISOLERING</div>
-      <nav class="menu">
-        <a href="./index.html">Forside</a>
-        <a href="./produkter.html">Produkter</a>
-        <a href="./hinnasto.html">Prisliste</a>
-        <a href="./kontakt.html">Kontakt</a>
-      </nav>
-    </div>
-  </header>
+  <header>📄 NIEMI ISOLERING – PDF-KATALOG</header>
 
   <main class="container">
-    <h1>PDF-katalog & dokumenter</h1>
-    <p class="muted">Klikk i listen for å bytte dokument. Du kan også laste ned PDF-filen.</p>
-
     <div class="grid">
+      <!-- ===== VASEN SIVUPANEELI ===== -->
       <aside class="list" id="pdf-list">
-        <a href="./pdf/Niemi_Isolering_Katalog_NO.pdf" data-title="Katalog (NO)" class="active">Katalog (NO)</a>
-        <a href="./pdf/Niemi_Isolering_Prisliste_NO.pdf" data-title="Prisliste (NO)">Prisliste (NO)</a>
+        <a href="./pdf/niemi_isolering_forside.pdf" data-title="Forside" class="active">Forside</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Første_Side.pdf" data-title="Første side">Første side</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_2_BKT_Roer.pdf" data-title="Side 2 – BKT Rør">Side 2 – BKT Rør</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_3_BKT_Boye.pdf" data-title="Side 3 – BKT Bøye">Side 3 – BKT Bøye</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_4_BKT_Overgang.pdf" data-title="Side 4 – BKT Overgang">Side 4 – BKT Overgang</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_5_BKT_Firkant_til_Rund.pdf" data-title="Side 5 – Firkant til Rund">Side 5 – Firkant til Rund</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_6_BKT_Rektangulær_til_Rektangulær.pdf" data-title="Side 6 – Rektangulær til Rektangulær">Side 6 – Rektangulær til Rektangulær</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_7_BKT_Overgang_med_Bunnradius.pdf" data-title="Side 7 – Overgang med Bunnradius">Side 7 – Overgang med Bunnradius</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_8_Lokk_med_Tilslutningslist.pdf" data-title="Side 8 – Lokk med Tilslutningslist">Side 8 – Lokk med Tilslutningslist</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_9_Regnhatt_med_Nett.pdf" data-title="Side 9 – Regnhatt med Nett">Side 9 – Regnhatt med Nett</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_10_Vaerbestandig_Gitter.pdf" data-title="Side 10 – Værbestandig Gitter">Side 10 – Værbestandig Gitter</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_11_Takadapter.pdf" data-title="Side 11 – Takadapter">Side 11 – Takadapter</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_12_Veggrist.pdf" data-title="Side 12 – Veggrist">Side 12 – Veggrist</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_13_Veggkanalramme.pdf" data-title="Side 13 – Veggkanalramme">Side 13 – Veggkanalramme</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_14_Regnkrage.pdf" data-title="Side 14 – Regnkrage">Side 14 – Regnkrage</a>
+        <a href="./pdf/Ventilasjonssystemer_Norsk_Side_15_Maskiner.pdf" data-title="Side 15 – Maskiner">Side 15 – Maskiner</a>
       </aside>
 
+      <!-- ===== OIKEA KATSELUALUE ===== -->
       <section class="viewer">
         <div class="toolbar">
-          <a id="download" class="btn" href="./pdf/Niemi_Isolering_Katalog_NO.pdf" download>Last ned PDF</a>
-          <a id="open-new" class="btn btn-outline" href="./pdf/Niemi_Isolering_Katalog_NO.pdf" target="_blank" rel="noopener">Åpne i ny fane</a>
+          <a id="download" class="btn" href="./pdf/niemi_isolering_forside.pdf" download>Last ned PDF</a>
+          <a id="open-new" class="btn-outline" href="./pdf/niemi_isolering_forside.pdf" target="_blank" rel="noopener">Åpne i ny fane</a>
         </div>
-        <iframe id="frame" src="./pdf/Niemi_Isolering_Katalog_NO.pdf" title="Katalog (NO)"></iframe>
+        <iframe id="frame" src="./pdf/niemi_isolering_forside.pdf" title="Forside"></iframe>
       </section>
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="divider"></div>
-      <div class="footer-grid">
-        <div class="small"><strong>Niemi Isolering</strong><br/>Ventilasjon & Metall</div>
-        <div class="small">E-post: <a href="mailto:isolerigniemi@gmail.com">isolerigniemi@gmail.com</a><br/>WhatsApp: <a href="https://wa.me/358402434364" rel="noopener">+358 40 243 4364</a></div>
-      </div>
-    </div>
+  <footer>
+    Niemi Isolering © 2025 – Ventilasjon & Metall  
+    • E-post: <a href="mailto:isolerigniemi@gmail.com">isolerigniemi@gmail.com</a>  
+    • WhatsApp: <a href="https://wa.me/358402434364" rel="noopener">+358 40 243 4364</a>
   </footer>
 
   <script>
@@ -69,14 +140,17 @@
       const dl = document.getElementById('download');
       const open = document.getElementById('open-new');
       list.addEventListener('click', function(e){
-        const a = e.target.closest('a'); if(!a) return;
+        const a = e.target.closest('a');
+        if(!a) return;
         e.preventDefault();
         const url = a.getAttribute('href');
         const title = a.dataset.title || 'PDF';
-        list.querySelectorAll('a').forEach(x=>x.classList.remove('active'));
+        list.querySelectorAll('a').forEach(x => x.classList.remove('active'));
         a.classList.add('active');
-        frame.src = url; frame.title = title;
-        dl.href = url; open.href = url;
+        frame.src = url;
+        frame.title = title;
+        dl.href = url;
+        open.href = url;
       });
     })();
   </script>
