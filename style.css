@@ -1,0 +1,117 @@
+/* ====== Grunnvariabler (lys, myk grønn stil) ====== */
+:root{
+  --bg-top:#f4fbf7;     /* bakgrunn – øvre del */
+  --bg-bot:#dff0e7;     /* bakgrunn – nedre del */
+  --panel:#ffffff;      /* paneler / kort */
+  --card:#ffffff;
+  --muted:#466262;      /* grågrønn tekst */
+  --brand:#2fbf71;      /* hovedfarge (grønn) */
+  --brand-2:#3aa8ff;    /* sekundærfarge (blå) */
+  --text:#0f172a;       /* hovedtekst – mørk */
+  --max:1100px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg, #eaf6f0 0%, #d7efe1 100%);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ====== Lenker og knapper ====== */
+a{color:#0e7c4f;text-decoration:none}
+a:hover{text-decoration:underline}
+
+.btn{
+  display:inline-block;
+  background:linear-gradient(90deg,var(--brand),#86e2ae);
+  color:#06351f;
+  font-weight:700;
+  padding:12px 16px;
+  border-radius:12px;
+  border:none;
+  box-shadow:0 6px 16px rgba(47,191,113,.25);
+}
+.btn:hover{filter:brightness(1.05)}
+.btn-outline{
+  display:inline-block;
+  background:transparent;
+  border:1px solid rgba(0,0,0,.15);
+  padding:12px 16px;
+  border-radius:12px;
+  color:var(--text);
+}
+.btn.full{display:block;text-align:center;width:100%}
+
+/* ====== Struktur ====== */
+.container{max-width:var(--max);margin:0 auto;padding:clamp(16px,2vw,24px)}
+.site-header{background:linear-gradient(180deg,#ffffffaa 0%, transparent 100%)}
+.site-header.compact{padding-bottom:8px}
+
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-weight:800;letter-spacing:.4px}
+.menu a{margin-left:16px;padding:8px 10px;border-radius:10px}
+.menu a.active,.menu a:hover{background:rgba(0,0,0,.06)}
+
+.hero{padding-top:24px;padding-bottom:10px;text-align:left}
+.hero h1{font-size:clamp(28px,3.6vw,44px);line-height:1.15;margin:0 0 10px}
+.lead{color:var(--muted);max-width:60ch;margin:0 0 16px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ====== Rutestyrt layout ====== */
+.grid-3{
+  display:grid;gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  margin-top:8px
+}
+
+/* Kort og paneler (lyse) */
+.card,.panel{
+  background:var(--panel);
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:16px;padding:18px;
+  box-shadow:0 10px 26px rgba(0,0,0,.05)
+}
+.card h3{margin-top:0}
+
+/* Delt seksjon */
+.split{
+  display:grid;gap:18px;margin-top:8px;
+  grid-template-columns:1.4fr .9fr
+}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
+
+/* Dokumentkort */
+.catalog{display:grid;gap:14px;margin-top:14px}
+.doc{
+  display:grid;gap:14px;align-items:center;
+  grid-template-columns:1fr auto;
+  background:#fff;border:1px solid rgba(0,0,0,.08);
+  border-radius:16px;padding:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,.05)
+}
+.doc h3{margin:0}
+.doc-actions .btn{white-space:nowrap}
+.bullets{margin:6px 0 0 16px}
+
+/* Informasjonsboks */
+.info-box{
+  margin-top:16px;padding:14px 16px;border-radius:12px;
+  background:rgba(47,191,113,.08);
+  border:1px dashed rgba(47,191,113,.35)
+}
+
+/* Kontaktkort */
+.contact-card{
+  background:#fff;border:1px solid rgba(0,0,0,.08);
+  border-radius:12px;padding:14px;margin:10px 0
+}
+
+/* Footer */
+.site-footer{border-top:1px solid rgba(0,0,0,.08);margin-top:32px}
+.footer-grid{display:grid;gap:12px;grid-template-columns:1fr 1fr 1fr}
+@media (max-width:800px){.footer-grid{grid-template-columns:1fr}}
+.link-arrow{display:inline-block;margin-top:8px}
+.link-arrow::after{content:" →"}
