@@ -1,97 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nb">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Niemi Isolering – Ventilasjon & metallprodukter</title>
-  <meta name="description" content="Ventilasjonssystemer og metallprodukter av høy kvalitet. Presisjon i hvert snitt – kvalitet i hver detalj. Gode priser og rask levering." />
-  <link rel="icon" href="assets/favicon.ico" />
-  <!-- Jos sinulla on tyylitiedosto: pidä sama polku kuin DK-versiossa -->
-  <link rel="stylesheet" href="assets/styles.css" />
+  <title>Niemi Isolering – Ventilasjon & Metall</title>
+  <meta name="description" content="Ventilasjonssystemer og metallprodukter av høy kvalitet – gode priser og rask levering." />
+
+  <!-- Fontit (voi pitää) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- TÄRKEÄ: ulkoinen CSS tästä reposta -->
+  <link rel="stylesheet" href="./style.css" />
+
+  <style>
+    /* Pidetään kevyt perus-tyyli varalta; varsinainen ulkoasu tulee style.css:stä */
+    *,*::before,*::after { box-sizing: border-box; }
+    html,body { margin:0; padding:0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: #1a202c;
+      line-height: 1.6;
+      background: linear-gradient(180deg, #c9d8e6 0%, #eef4f9 100%);
+    }
+    a { color:#2f855a; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    img { max-width:100%; height:auto; }
+    .container { width:min(1100px, 92vw); margin-inline:auto; }
+
+    header.site-header { padding:1.25rem 0 .5rem; background:transparent; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .brand { font-weight:800; letter-spacing:.03em; color:#1a202c; font-size:1.05rem; }
+
+    nav.menu { display:flex; gap:1rem; flex-wrap:wrap; }
+    nav.menu a { padding:.5rem .85rem; border-radius:999px; font-weight:600; color:#1a202c; }
+    nav.menu a.active, nav.menu a:hover { background:#e0e8f0; text-decoration:none; }
+
+    .hero { padding:clamp(2rem, 5vw, 3rem) 0 1.25rem; }
+    .hero h1 { margin:0 0 .75rem 0; font-size:clamp(2rem, 4.5vw, 3rem); line-height:1.15; letter-spacing:.01em; font-weight:800; }
+    .lead { margin:0 0 1.25rem 0; font-size:clamp(1rem,1.9vw,1.125rem); color:#2d3748; }
+
+    .cta-row { display:flex; gap:.75rem; flex-wrap:wrap; }
+    .btn, .btn-outline { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.8rem 1.1rem; border-radius:.9rem; font-weight:700; letter-spacing:.01em; border:2px solid transparent; cursor:pointer; text-decoration:none; transition: transform .08s ease, background .2s ease, box-shadow .2s ease; }
+    .btn { background:#2f855a; color:#fff; box-shadow:0 6px 20px rgba(47,133,90,.18); }
+    .btn:hover { transform:translateY(-1px); text-decoration:none; }
+    .btn:active { transform:translateY(0); }
+    .btn-outline { background:transparent; color:#2f855a; border-color:#2f855a; }
+    .btn-outline:hover { background:#e7f3ec; text-decoration:none; }
+
+    .section { padding:1.25rem 0 .5rem; }
+    .muted { color:#4b6a5d; font-size:.95rem; }
+
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    @media (max-width:900px){ .grid-3{ grid-template-columns:1fr; } }
+    .card { background:#fff; border-radius:1rem; padding:1.25rem 1.1rem; box-shadow:0 10px 28px rgba(9,33,23,.08); border:1px solid #e5efe9; }
+    .card h3 { margin:.2rem 0 .35rem; font-size:1.15rem; font-weight:800; }
+    .card p  { margin:.25rem 0 0; color:#2f4b40; }
+
+    .imgwrap { text-align:center; margin-top:1rem; }
+    .imgwrap + .imgwrap { margin-top:.5rem; }
+    .pretty { max-width:90%; border-radius:1rem; box-shadow:0 6px 18px rgba(0,0,0,.15); }
+    .imgcap { color:#4b6a5d; font-style:italic; margin-top:.5rem; }
+
+    .cta-banner { margin:1.5rem auto 0; padding:1rem 1.25rem; background:#f0f8ff; border:1px solid #c7d8eb; border-radius:1rem; box-shadow:0 8px 20px rgba(0,0,0,.06); }
+    .cta-banner p { margin:.35rem 0; }
+    .cta-banner strong { font-weight:800; }
+
+    footer.site-footer { margin-top: 2rem; padding: 1.1rem 0 2rem; color:#2d3748; }
+    .footer-grid { display:grid; gap:.75rem; grid-template-columns: repeat(2, 1fr); }
+    @media (max-width:700px) { .footer-grid { grid-template-columns:1fr; } }
+    .small { font-size:.95rem; color:#2d3748; }
+    .divider { height:1px; background:#cbd5e0; margin:.75rem 0 1rem; }
+  </style>
 </head>
+
 <body>
+  <!-- ===== Header & Navigation ===== -->
   <header class="site-header">
-    <div class="container">
-      <a class="logo" href="index.html" aria-label="Niemi Isolering">Niemi Isolering</a>
-      <nav class="nav">
-        <a href="index.html">Forside</a>
-        <a href="produkter.html">Produkter</a>
-        <a href="hinnasto.html">Prisliste</a>
-        <a href="kontakt.html">Kontakt</a>
+    <div class="container topbar">
+      <div class="brand">NIEMI ISOLERING</div>
+      <nav class="menu" aria-label="Hovedmeny">
+        <a href="./index.html" class="active">Forside</a>
+        <a href="./produkter.html">Produkter</a>
+        <a href="./hinnasto.html">Prisliste</a>
+        <a href="./kontakt.html">Kontakt</a>
       </nav>
     </div>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero container">
+      <h1>Ventilasjonssystemer og metallprodukter av høy kvalitet</h1>
+      <p class="lead">Presisjon i hvert snitt – kvalitet i hver detalj. Gode priser og rask levering.</p>
+      <div class="cta-row">
+        <a class="btn" href="./produkter.html">Se produkter</a>
+        <a class="btn-outline" href="./kontakt.html">Be om tilbud</a>
+      </div>
+    </section>
   </header>
 
+  <!-- ===== Kuvat (lataa nämä ./assets/ -kansioon) ===== -->
+  <section class="container imgwrap">
+    <img loading="lazy" class="pretty" src="./assets/julkaisuun.png" alt="Kanal, standard og spesialmål" />
+    <p class="imgcap">Standardkanaler og spesialmål etter avtale</p>
+  </section>
+
+  <section class="container imgwrap">
+    <img loading="lazy" class="pretty" src="./assets/julkaisu.png" alt="Isoleringskledning – presis utførelse" />
+    <p class="imgcap">Isoleringskledning utført med presisjon og erfaring</p>
+  </section>
+
+  <!-- ===== Prisliste-CTA ===== -->
+  <section id="prisliste" class="section container">
+    <a class="btn" href="./hinnasto.html">Prisliste – Isoleringskledning (PDF)</a>
+    <span class="muted" style="margin-left:.75rem;">Åpnes på siden</span>
+  </section>
+
+  <!-- ===== Tilbud-CTA ===== -->
+  <section class="container cta-banner">
+    <p><strong>Trenger du et tilbud?</strong></p>
+    <p>Send oss <strong>tegninger eller mål</strong> på delene du ønsker – vi beregner raskt <strong>materialpris</strong> og levering.</p>
+    <p class="muted">E-post: <a href="mailto:isolerigniemi@gmail.com">isolerigniemi@gmail.com</a> • WhatsApp: <a href="https://wa.me/358402434364" target="_blank" rel="noopener">+358 40 243 4364</a></p>
+  </section>
+
   <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container">
-        <h1>Ventilasjonssystemer og metallprodukter av høy kvalitet</h1>
-        <p>Presisjon i hvert snitt – kvalitet i hver detalj. Gode priser og rask levering.</p>
-        <div class="hero-ctas">
-          <a class="btn" href="produkter.html">Se produkter</a>
-          <a class="btn btn-secondary" href="hinnasto.html">Se prisliste</a>
-        </div>
-      </div>
-    </section>
+    <!-- ===== Feature cards ===== -->
+    <section class="container grid-3" style="margin-top:.75rem;">
+      <article class="card">
+        <h3>Kvalitet</h3>
+        <p>Komponenter og kanaler produsert etter standardmål – og mulighet for spesialmål etter avtale.</p>
+      </article>
 
-    <!-- USP-rivi -->
-    <section class="usp">
-      <div class="container grid">
-        <div class="card">
-          <h3>Standard & spesialmål</h3>
-          <p>Komponenter og kanaler produsert etter standardmål – og mulighet for spesialmål etter avtale.</p>
-        </div>
-        <div class="card">
-          <h3>Isoleringskledning</h3>
-          <p>Isoleringsbekledning/kledning utført med presisjon og erfaring.</p>
-        </div>
-        <div class="card">
-          <h3>Tydelig dokumentasjon</h3>
-          <p>Leveranser med tydelig PDF-dokumentasjon – lett å planlegge og montere.</p>
-        </div>
-        <div class="card">
-          <h3>Direkte dialog</h3>
-          <p>Snakk direkte med produsenten. Vi finner løsningen som passer din oppgave – stor som liten.</p>
-        </div>
-      </div>
-    </section>
+      <article class="card">
+        <h3>Levering</h3>
+        <p>Leveranser med tydelig PDF-dokumentasjon – lett å planlegge og montere.</p>
+      </article>
 
-    <!-- Tarjouspyyntö -->
-    <section class="cta">
-      <div class="container">
-        <h2>Trenger du et tilbud?</h2>
-        <p>Send oss tegninger eller mål på delene du ønsker – vi beregner raskt materialpris og levering.</p>
-        <div class="cta-actions">
-          <a class="btn" href="kontakt.html">Kontakt oss</a>
-          <a class="btn btn-secondary" href="pdf-viewer.html">Åpne katalog (PDF)</a>
-        </div>
-        <p class="contact-inline">
-          E-post: <a href="mailto:isolerigniemi@gmail.com">isolerigniemi@gmail.com</a> ·
-          WhatsApp: <a href="https://wa.me/358402434364" rel="noopener">+358 40 243 4364</a>
-        </p>
-      </div>
-    </section>
-
-    <!-- Esimerkkilista tuotteista (voit poistaa jos DK-versiossa ei ole tätä osuutta) -->
-    <section class="products-preview">
-      <div class="container">
-        <h2>Utvalgte produktkategorier</h2>
-        <ul class="bullets">
-          <li>Standardkanaler og tilkoblingsdeler</li>
-          <li>Albuer, overganger og lokk</li>
-          <li>Værbestandige rister og regnhatter</li>
-          <li>Takadaptere, veggrister og rammer</li>
-        </ul>
-        <p><a href="produkter.html" class="link">Se hele utvalget →</a></p>
-      </div>
+      <article class="card">
+        <h3>Samarbeid</h3>
+        <p>Direkte dialog med produsenten. Vi finner løsningen som passer din oppgave – stor som liten.</p>
+      </article>
     </section>
   </main>
 
+  <!-- ===== Footer ===== -->
   <footer class="site-footer">
     <div class="container">
-      <p>© Niemi Isolering. Alle rettigheter forbeholdes.</p>
-      <p>E-post: <a href="mailto:isolerigniemi@gmail.com">isolerigniemi@gmail.com</a> · WhatsApp: <a href="https://wa.me/358402434364">+358 40 243 4364</a></p>
+      <div class="divider"></div>
+      <div class="footer-grid">
+        <div class="small">
+          <strong>Niemi Isolering</strong><br />
+          Ventilasjon & Metall
+        </div>
+        <div class="small">
+          E-post: <a href="mailto:isolerigniemi@gmail.com">isolerigniemi@gmail.com</a><br />
+          WhatsApp: <a href="https://wa.me/358402434364" target="_blank" rel="noopener">+358 40 243 4364</a>
+        </div>
+      </div>
     </div>
   </footer>
 </body>
